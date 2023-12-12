@@ -1,29 +1,26 @@
 import { useState } from 'react';
 
-import { Octokit } from 'octokit'
 
 import githubImage from '../../assets/images/githubl.png';
 import Layout from '../../components/header/layout/layout';
 import Input from '../../components/common/input';
+import getUserProfileAPi from '../../core/api/get/getUserProfile.api';
+import { useNavigate } from 'react-router-dom';
 
-const octokit = new Octokit({
-    auth: "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",
-});
 
 const Home = () => {
+    const [user, setuser] = useState<any>()
     const [username, setUsername] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false)
+
+    const navigate = useNavigate()
     const getUserData = async () => {
         setLoading(true)
-        try {
-            const response = await octokit.request('GET /users/{username}/repos', {
-                username: username
-            });
-            console.log(response.data);
-        } catch (error) {
-            console.error("Error fetching user repositories:", error);
-        }
+        const res = await getUserProfileAPi(username)
+        setuser(res)
+        navigate(`/profile/${username}`, { state: res })
         setLoading(false)
+
     }
 
 
