@@ -6,14 +6,15 @@ import Layout from '../../components/header/layout/layout';
 import Input from '../../components/common/input';
 import getUserProfileAPi from '../../core/api/get/getUserProfile.api';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/User.context';
 
 
 const Home = () => {
-    const [user, setuser] = useState<any>()
     const [username, setUsername] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false)
-
+    const { setUser } = useUser()
     const navigate = useNavigate()
+    
     const getUserData = async () => {
         setLoading(true)
         const res: any = await getUserProfileAPi(username)
@@ -21,7 +22,7 @@ const Home = () => {
             console.log("user not found")
         }
         else {
-            setuser(res)
+            setUser(res)
             navigate(`/profile/${username.toLowerCase()}`)
             setLoading(false)
         }
