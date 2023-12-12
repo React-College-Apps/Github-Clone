@@ -16,11 +16,15 @@ const Home = () => {
     const navigate = useNavigate()
     const getUserData = async () => {
         setLoading(true)
-        const res = await getUserProfileAPi(username)
-        setuser(res)
-        navigate(`/profile/${username}`, { state: res })
-        setLoading(false)
-
+        const res: any = await getUserProfileAPi(username)
+        if (res.status === 404) {
+            console.log("user not found")
+        }
+        else {
+            setuser(res)
+            navigate(`/profile/${username.toLowerCase()}`)
+            setLoading(false)
+        }
     }
 
 
