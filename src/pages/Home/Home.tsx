@@ -17,17 +17,23 @@ const Home = () => {
     const navigate = useNavigate()
 
     const getUserData = async () => {
-        setLoading(true)
-        const res:any = await getUserProfileAPi(username)
-        if (res.length > 0) {
-            setUser(res)
-            navigate(`/profile/${username.toLowerCase()}`)
+        setLoading(true);
+        try {
+            const res:any = await getUserProfileAPi(username);
+            setUser(res);
+            if (res.status === 404) {
+                setError('User Not Found');
+                return;
+            }
+            navigate(`/profile/${username.toLowerCase()}`);
+
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+            setError('User Not Found');
+        } finally {
+            setLoading(false);
         }
-        else {
-            setError('User Not Found')
-        }
-        setLoading(false)
-    }
+    };
 
 
 

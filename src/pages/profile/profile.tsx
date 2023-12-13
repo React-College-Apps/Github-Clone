@@ -10,7 +10,7 @@ const Profile = () => {
                 <div className='border border-[#ccc] p-5 rounded '><h2>s</h2></div>
                 <div className='ml-10'><h2>s</h2></div>
             </div>
-
+            
         </Layout>
     )
 }
