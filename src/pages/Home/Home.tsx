@@ -12,20 +12,21 @@ import { useUser } from '../../context/User.context';
 const Home = () => {
     const [username, setUsername] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string>("")
     const { setUser } = useUser()
     const navigate = useNavigate()
-    
+
     const getUserData = async () => {
         setLoading(true)
-        const res: any = await getUserProfileAPi(username)
-        if (res.status === 404) {
-            console.log("user not found")
-        }
-        else {
+        const res:any = await getUserProfileAPi(username)
+        if (res.length > 0) {
             setUser(res)
             navigate(`/profile/${username.toLowerCase()}`)
-            setLoading(false)
         }
+        else {
+            setError('User Not Found')
+        }
+        setLoading(false)
     }
 
 
@@ -44,12 +45,12 @@ const Home = () => {
                         placeHolder={'search a user, like DesertFoox'}
                         onChange={(e) => setUsername(e.target.value)}
                     />
+                    {error !== "" && <span className='text-red-500 text-md block mt-2'>{error}</span>}
                     <button
                         className='px-2 py-2 bg-[#1F2937] text-white rounded-md mt-3'
                         disabled={loading}
                         onClick={getUserData}
                     >
-
                         {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
                     </button>
                 </div>

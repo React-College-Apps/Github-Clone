@@ -1,4 +1,3 @@
-import React from 'react'
 import Logo from '../../assets/images/github.png'
 import { Link } from 'react-router-dom'
 
