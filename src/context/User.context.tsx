@@ -17,7 +17,7 @@ type UserProviderProps = {
 };
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<any>({});
 
     return (
         <UserContext.Provider value={{ user, setUser }}>
