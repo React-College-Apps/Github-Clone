@@ -11,7 +11,7 @@ const Repository = () => {
     const { user, setUser } = useUser()
     const { username, repo } = useParams();
     const [repository, setRepository] = useState<any>({});
-    const [contributors, setContributors] = useState<any>([]);
+    const [loading, setLoading] = useState<boolean>(true)
     const [fileTree, setFileTree] = useState<any>([]);
     const [buttonText, setButtonText] = useState("Clone with HTTP🔽");
 
@@ -30,6 +30,7 @@ const Repository = () => {
         setUser({ userProfile: userDatas.userProfile, repository: repoDetails });
         setRepository(repoDetails);
         setFileTree(sortedFileTree);
+        setLoading(false)
     };
 
     const copyCloneUrlToClipboard = async () => {
@@ -39,7 +40,7 @@ const Repository = () => {
             setButtonText("Copied!");
             setTimeout(() => {
                 setButtonText("Clone with HTTP🔽");
-            }, 2000); 
+            }, 2000);
         } catch (err) {
             console.error('Failed to copy:', err);
         }
@@ -68,20 +69,25 @@ const Repository = () => {
                     )}
                 </div>
                 <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
-                    <div className='flex justify-between'>
-                        <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
-                        <button
-                            className='bg-[#1F2937] text-white py-2 px-3 text-center rounded'
-                            onClick={copyCloneUrlToClipboard}
-                        >
-                            {buttonText}
-                        </button>
-                    </div>
-                    <div className='grid grid-cols-1 mt-3 gap-4'>
-                        {fileTree && fileTree.length > 0 && fileTree.map((item: any, index: any) => (
-                            <h2 key={index}>{item.type === "blob" ? `📄 ${item.path}` : `📁 ${item.path}`}</h2>
-                        ))}
-                    </div>
+                    {loading ? <div className="flex justify-center items-center">
+                        <div className="loader"></div>
+                    </div> : <>
+                        <div className='flex justify-between'>
+                            <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
+                            <button
+                                className='bg-[#1F2937] text-white py-2 px-3 text-center rounded'
+                                onClick={copyCloneUrlToClipboard}
+                            >
+                                {buttonText}
+                            </button>
+                        </div>
+                        <div className='grid grid-cols-1 mt-3 gap-4'>
+                            {fileTree && fileTree.length > 0 && fileTree.map((item: any, index: any) => (
+                                <p key={index}>{item.type === "blob" ? `📄 ${item.path}` : `📁 ${item.path}`}</p>
+                            ))}
+                        </div>
+                    </>}
+
                 </div>
 
             </div>
