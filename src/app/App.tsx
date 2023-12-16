@@ -6,6 +6,8 @@ import { UserProvider } from '../context/User.context';
 import Home from '../pages/Home/Home';
 import Profile from '../pages/profile/profile';
 import Repository from '../pages/repository/repository';
+import FileContent from '../pages/fileContent/fileContent';
+import FolderContent from '../pages/folderContent/folderContent';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -20,6 +22,10 @@ export default function App() {
     {
       path: "/:username/:repo",
       element: <Repository />,
+    },
+    {
+      path: "/:username/:repo/content",
+      element: <FileContent />,
     },
   ]);
 

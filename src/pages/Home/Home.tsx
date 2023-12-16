@@ -38,7 +38,7 @@ const Home = () => {
 
 
     return (
-        <Layout>
+        <Layout noLayoutContent={true}>
             <div className='flex flex-col justify-center items-center h-screen'>
                 <div>
                     <img className='w-[300px] rounded-md' src={githubImage} alt="Github" />

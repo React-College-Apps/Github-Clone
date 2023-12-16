@@ -36,7 +36,7 @@ const Profile = () => {
 
     return (
         <Layout>
-            <div className='flex justify-center mt-[6rem] container mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-3'>
+ 
                 <div className='flex flex-col align-self-start'>
                     {user.userProfile && (
                         <UserCart
@@ -70,7 +70,7 @@ const Profile = () => {
                         changePage={changePage}
                     />
                 </div>
-            </div>
+
         </Layout>
     );
 };

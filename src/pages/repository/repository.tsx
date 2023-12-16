@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Layout from '../../components/header/layout/layout';
 import getUserRepo from '../../core/api/get/getUserRepo.api';
 import { useUser } from '../../context/User.context';
@@ -53,44 +53,46 @@ const Repository = () => {
 
     return (
         <Layout>
-            <div className='flex justify-center mt-[6rem] container mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-3'>
-                <div className='flex flex-col align-self-start'>
-                    {user.userProfile && (
-                        <UserCart
-                            avatar={user.userProfile.avatar_url}
-                            name={user.userProfile.name}
-                            login={user.userProfile.login}
-                            bio={user.userProfile.bio}
-                            followers={user.userProfile.followers}
-                            following={user.userProfile.following}
-                            location={user.userProfile.location}
-                            blog={user.userProfile.blog}
-                        />
-                    )}
-                </div>
-                <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
-                    {loading ? <div className="flex justify-center items-center">
-                        <div className="loader"></div>
-                    </div> : <>
-                        <div className='flex justify-between'>
-                            <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
-                            <button
-                                className='bg-[#1F2937] text-white py-2 px-3 text-center rounded'
-                                onClick={copyCloneUrlToClipboard}
+            <div className='flex flex-col align-self-start'>
+                {user.userProfile && (
+                    <UserCart
+                        avatar={user.userProfile.avatar_url}
+                        name={user.userProfile.name}
+                        login={user.userProfile.login}
+                        bio={user.userProfile.bio}
+                        followers={user.userProfile.followers}
+                        following={user.userProfile.following}
+                        location={user.userProfile.location}
+                        blog={user.userProfile.blog}
+                    />
+                )}
+            </div>
+            <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
+                {loading ? <div className="flex justify-center items-center">
+                    <div className="loader"></div>
+                </div> : <>
+                    <div className='flex justify-between'>
+                        <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
+                        <button
+                            className='bg-[#1F2937] text-white py-2 px-3 text-center rounded'
+                            onClick={copyCloneUrlToClipboard}
+                        >
+                            {buttonText}
+                        </button>
+                    </div>
+                    <div className='grid grid-cols-1 mt-3 gap-4'>
+                        {fileTree && fileTree.length > 0 && fileTree.map((item: any, index: any) => (
+                            <Link
+                                to={`/${username}/${repo}/content?path=${item.path}&type=${item.type}`}
+                                key={index}
                             >
-                                {buttonText}
-                            </button>
-                        </div>
-                        <div className='grid grid-cols-1 mt-3 gap-4'>
-                            {fileTree && fileTree.length > 0 && fileTree.map((item: any, index: any) => (
-                                <p key={index}>{item.type === "blob" ? `📄 ${item.path}` : `📁 ${item.path}`}</p>
-                            ))}
-                        </div>
-                    </>}
-
-                </div>
+                                {item.type === "blob" ? `📄 ${item.path}` : `📁 ${item.path}`}
+                            </Link>))}
+                    </div>
+                </>}
 
             </div>
+
         </Layout>
     );
 };
