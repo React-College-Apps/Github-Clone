@@ -6,6 +6,7 @@ import { useUser } from '../../context/User.context';
 import UserCart from '../../components/profile/userCart/userCart';
 import getUserProfileApi from '../../core/api/get/getUserProfile.api';
 import getRepoFileTree from '../../core/api/get/getRepoFileTree.api';
+import FileTree from '../../components/fileTree/fileTree';
 
 const Repository = () => {
     const { user, setUser } = useUser()
@@ -19,8 +20,8 @@ const Repository = () => {
         const repoDetails: any = await getUserRepo(username!, repo!);
         const userDatas: any = await getUserProfileApi(username!);
         const getRepoTree: any = await getRepoFileTree(username!, repo!);
-
-        const sortedFileTree = getRepoTree.tree.sort((a: any, b: any) => {
+        console.log(getRepoTree)
+        const sortedFileTree = getRepoTree.sort((a: any, b: any) => {
             if (a.type === b.type) {
                 return 0;
             }
@@ -80,15 +81,7 @@ const Repository = () => {
                             {buttonText}
                         </button>
                     </div>
-                    <div className='grid grid-cols-1 mt-3 gap-4'>
-                        {fileTree && fileTree.length > 0 && fileTree.map((item: any, index: any) => (
-                            <Link
-                                to={`/${username}/${repo}/content?path=${item.path}&type=${item.type}`}
-                                key={index}
-                            >
-                                {item.type === "blob" ? `📄 ${item.path}` : `📁 ${item.path}`}
-                            </Link>))}
-                    </div>
+                    <FileTree fileTree={fileTree} repo={repo!} username={username!} />
                 </>}
 
             </div>
