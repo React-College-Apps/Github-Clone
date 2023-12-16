@@ -39,17 +39,14 @@ const FileContent = () => {
         if (type === 'blob' || type === "file") {
             const res: any = await getRepoFileContent(username!, repo!, path!);
             if (res && checkIfImage(path)) {
-                // Set the image URL if it's an image file
                 setImageUrl(res.download_url);
             } else if (res && res.encoding === 'base64') {
-                // Handle non-image files
                 const decodedContent = atob(res.content);
                 setContent(decodedContent);
                 const language = determineFileLanguage(path);
                 setFileLanguage(language);
             }
         } else if (type === 'tree' || type === "dir") {
-            // Handle directories
             const folderContent = await getRepoFileTree(username!, repo!, path!);
             setFileTree(folderContent);
         }
