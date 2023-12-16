@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import Layout from '../../components/header/layout/layout';
 import getRepoFileContent from '../../core/api/get/getRepoFileContent';
-import ReactMarkdown from 'react-markdown';
 
 import { useAppContext } from '../../context/App.context';
 import UserCart from '../../components/profile/userCart/userCart';

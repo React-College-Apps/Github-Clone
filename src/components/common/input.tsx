@@ -5,16 +5,18 @@ interface IInputProps {
     type: string,
     className?: string,
     labelClassName?: string,
+    value?:string,
     placeHolder: string,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
-const Input: React.FC<IInputProps> = ({ label, type, className, placeHolder, onChange, labelClassName }) => {
+const Input: React.FC<IInputProps> = ({ label, type, className, placeHolder, onChange, labelClassName ,value}) => {
     return (
         <div>
             <label htmlFor={type} className={`${labelClassName} block text-sm font-medium leading-6 text-gray-900`}
             >{label}</label>
             <div className="mt-2">
                 <input
+                    value={value}
                     type={type}
                     name={type}
                     id={type}

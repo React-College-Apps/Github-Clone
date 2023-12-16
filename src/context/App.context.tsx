@@ -8,12 +8,14 @@ type AppContextType = {
     setUser: React.Dispatch<React.SetStateAction<any>>;
     repositories: any,
     setRepositories: React.Dispatch<React.SetStateAction<any>>;
+
 };
 const AppContext = createContext<AppContextType>({
     user: {},
     setUser: () => { },
     repositories: {},
-    setRepositories: () => { }
+    setRepositories: () => { },
+
 });
 
 type AppContextProvider = {

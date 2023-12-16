@@ -31,7 +31,7 @@ export default function App() {
       path: "/findrepo",
       element: <FindRepo />,
     }, {
-      path: "/repositories",
+      path: "/repositories/search",
       element: <Repositories />,
     },
   ]);

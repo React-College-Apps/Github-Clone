@@ -18,7 +18,7 @@ const FindRepo = () => {
         setLoading(true);
         try {
             const res = await searchRepos(searchQuery)
-            navigate(`/repositories`)
+            navigate(`/repositories/search?query=${searchQuery}`)
             setRepositories(res)
         } catch (error) {
             console.error("Error fetching user data:", error);

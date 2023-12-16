@@ -1,7 +1,11 @@
 import Logo from '../../assets/images/github.png'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Header = () => {
+    const location = useLocation();
+
+    const isActive = (pathname:string) => location.pathname === pathname;
+
     return (
         <nav className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -22,14 +26,16 @@ const Header = () => {
 
                                 <Link
                                     to={"/"}
-                                    className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                                    aria-current="page"
+                                    className={`px-3 py-2 rounded-md text-sm font-medium ${isActive('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                        }`}
+                                    aria-current={isActive('/') ? 'page' : undefined}
                                 >
                                     Find User
                                 </Link>
                                 <Link
                                     to="/findrepo"
-                                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                                    className={`px-3 py-2 rounded-md text-sm font-medium ${isActive('/findrepo') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                        }`}
                                 >
                                     Find Repo
                                 </Link>
