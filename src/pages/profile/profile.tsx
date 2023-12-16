@@ -14,9 +14,10 @@ const Profile = () => {
     const reposPerPage = 8;
 
     const getUserReposHandler = async () => {
+        setUser({userProfile:{}})
         const res: any = await getUserProfileApi(username || "");
         if (res.status !== 404) {
-            setUser(res);
+            // setUser(res);
         }
     };
 

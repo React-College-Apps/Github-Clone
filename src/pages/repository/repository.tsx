@@ -17,6 +17,7 @@ const Repository = () => {
     const [buttonText, setButtonText] = useState("Clone with HTTP🔽");
 
     const fetchRepoDetails = async () => {
+        setUser({})
         const repoDetails: any = await getUserRepo(username!, repo!);
         const userDatas: any = await getUserProfileApi(username!);
         const getRepoTree: any = await getRepoFileTree(username!, repo!);
