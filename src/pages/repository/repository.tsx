@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../../components/header/layout/layout';
 import getUserRepo from '../../core/api/get/getUserRepo.api';
@@ -13,18 +13,18 @@ const Repository = () => {
     const [repository, setRepository] = useState<any>({});
     const [contributors, setContributors] = useState<any>([]);
     const [fileTree, setFileTree] = useState<any>([]);
+    const [buttonText, setButtonText] = useState("Clone with HTTP🔽");
 
     const fetchRepoDetails = async () => {
         const repoDetails: any = await getUserRepo(username!, repo!);
         const userDatas: any = await getUserProfileApi(username!);
         const getRepoTree: any = await getRepoFileTree(username!, repo!);
 
-        // Sort file tree: directories first, then files
         const sortedFileTree = getRepoTree.tree.sort((a: any, b: any) => {
             if (a.type === b.type) {
-                return 0; // No change if both are of the same type
+                return 0;
             }
-            return a.type === 'tree' ? -1 : 1; // 'tree' (directories) come first
+            return a.type === 'tree' ? -1 : 1;
         });
 
         setUser({ userProfile: userDatas.userProfile, repository: repoDetails });
@@ -32,6 +32,18 @@ const Repository = () => {
         setFileTree(sortedFileTree);
     };
 
+    const copyCloneUrlToClipboard = async () => {
+        const cloneUrl = `https://github.com/${username}/${repo}.git`;
+        try {
+            await navigator.clipboard.writeText(cloneUrl);
+            setButtonText("Copied!");
+            setTimeout(() => {
+                setButtonText("Clone with HTTP🔽");
+            }, 2000); 
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
     useEffect(() => {
         if (username && repo) {
             fetchRepoDetails();
@@ -55,16 +67,23 @@ const Repository = () => {
                         />
                     )}
                 </div>
-                <div className='ml-10 border border-gray-300 p-5 rounded'>
-                    <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
+                <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
+                    <div className='flex justify-between'>
+                        <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
+                        <button
+                            className='bg-[#1F2937] text-white py-2 px-3 text-center rounded'
+                            onClick={copyCloneUrlToClipboard}
+                        >
+                            {buttonText}
+                        </button>
+                    </div>
                     <div className='grid grid-cols-1 mt-3 gap-4'>
-                        {fileTree && fileTree.length > 0 && fileTree.map((item:any, index:any) => (
+                        {fileTree && fileTree.length > 0 && fileTree.map((item: any, index: any) => (
                             <h2 key={index}>{item.type === "blob" ? `📄 ${item.path}` : `📁 ${item.path}`}</h2>
                         ))}
                     </div>
-
-
                 </div>
+
             </div>
         </Layout>
     );
