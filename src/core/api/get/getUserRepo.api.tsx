@@ -7,13 +7,16 @@ const octokit = new Octokit({
 
 const getUserRepo = async (username: string, repo: string) => {
   try {
-    const response = await octokit.request('GET /users/{username}/{repo}', {
-      username: username,
-      repo: repo
+    const response = await octokit.request('GET /repos/{owner}/{repo}', {
+      owner: username,
+      repo: repo,
+      headers: {
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
     });
     return response.data
   } catch (error) {
-    console.error("Error fetching user repositories:", error);
+    console.error("Error fetching repository data:", error);
     return error
   }
 }

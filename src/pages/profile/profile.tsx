@@ -58,7 +58,7 @@ const Profile = () => {
                     <div className='grid grid-cols-2 mt-3 gap-4'>
                         {currentRepos && currentRepos.length > 0 ? (
                             currentRepos.map((repo: any, key: any) => (
-                                <RepositoryCart key={key} name={repo.name} full_name={repo.full_name} language={repo.language} />
+                                <RepositoryCart key={key} name={repo.name} full_name={repo.full_name} language={repo.language} to={`/${repo.owner.login}/${repo.name}`} />
                             ))
                         ) : (
                             <p>No repositories found.</p>

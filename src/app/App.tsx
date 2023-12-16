@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
 import '../assets/styles/App.css';
+
+import { UserProvider } from '../context/User.context';
+
 import Home from '../pages/Home/Home';
 import Profile from '../pages/profile/profile';
-import { UserProvider } from '../context/User.context';
+import Repository from '../pages/repository/repository';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -14,6 +16,10 @@ export default function App() {
     {
       path: "/profile/:username",
       element: <Profile />,
+    },
+    {
+      path: "/:username/:repo",
+      element: <Repository />,
     },
   ]);
 
