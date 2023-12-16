@@ -4,6 +4,8 @@ import { useUser } from '../../context/User.context'
 import { useParams } from 'react-router-dom'
 import getUserProfileApi from '../../core/api/get/getUserProfile.api'
 import UserCart from '../../components/profile/userCart/userCart'
+import RepositoryCart from '../../components/profile/repositoryCart/repositoryCart'
+import Pagination from '../../components/pagination/pagination'
 
 const Profile = () => {
     const { user, setUser } = useUser();
@@ -56,27 +58,17 @@ const Profile = () => {
                     <div className='grid grid-cols-2 mt-3 gap-4'>
                         {currentRepos && currentRepos.length > 0 ? (
                             currentRepos.map((repo: any, key: any) => (
-                                <div key={key} className='border border-gray-300 hover:border-gray-400 rounded p-2 hover:shadow-lg transition-all w-[22rem]'> {/* Fixed width */}
-                                    <h3 className='text-lg font-medium'>{repo.name}</h3>
-                                    <p className='text-sm mt-2'>📍{repo.full_name}</p>
-                                    <p className='text-sm mt-2'>🤖{repo.language ? repo.language : "something"}</p>
-                                </div>
+                                <RepositoryCart key={key} name={repo.name} full_name={repo.full_name} language={repo.language} />
                             ))
                         ) : (
                             <p>No repositories found.</p>
                         )}
                     </div>
-                    <div className="flex justify-center mt-[2rem] ">
-                        {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
-                            <button
-                                key={number}
-                                onClick={() => changePage(number)}
-                                className={`mx-1 px-3 py-1 border ${currentPage === number ? 'border-blue-500' : 'border-gray-300'}`}
-                            >
-                                {number}
-                            </button>
-                        ))}
-                    </div>
+                    <Pagination
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                        changePage={changePage}
+                    />
                 </div>
             </div>
         </Layout>
