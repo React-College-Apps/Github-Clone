@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Layout from '../../components/header/layout/layout'
-import { useUser } from '../../context/User.context'
+import { useAppContext } from '../../context/App.context'
 import { useParams } from 'react-router-dom'
 import getUserProfileApi from '../../core/api/get/getUserProfile.api'
 import UserCart from '../../components/profile/userCart/userCart'
@@ -8,7 +8,7 @@ import RepositoryCart from '../../components/profile/repositoryCart/repositoryCa
 import Pagination from '../../components/pagination/pagination'
 
 const Profile = () => {
-    const { user, setUser } = useUser();
+    const { user, setUser } = useAppContext();
     const { username } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const reposPerPage = 8;

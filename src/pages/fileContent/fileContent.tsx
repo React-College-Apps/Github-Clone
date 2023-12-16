@@ -4,14 +4,14 @@ import Layout from '../../components/header/layout/layout';
 import getRepoFileContent from '../../core/api/get/getRepoFileContent';
 import ReactMarkdown from 'react-markdown';
 
-import { useUser } from '../../context/User.context';
+import { useAppContext } from '../../context/App.context';
 import UserCart from '../../components/profile/userCart/userCart';
 import FileViewer from '../../components/fileViewer/fileViewer';
 import getRepoFileTree from '../../core/api/get/getRepoFileTree.api';
 import FileTree from '../../components/fileTree/fileTree';
 
 const FileContent = () => {
-    const { user } = useUser();
+    const { user } = useAppContext();
     const { username, repo } = useParams();
     const location = useLocation();
 

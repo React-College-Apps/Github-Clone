@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Layout from '../../components/header/layout/layout';
 import getUserRepo from '../../core/api/get/getUserRepo.api';
-import { useUser } from '../../context/User.context';
+import { useAppContext } from '../../context/App.context';
 import UserCart from '../../components/profile/userCart/userCart';
 import getUserProfileApi from '../../core/api/get/getUserProfile.api';
 import getRepoFileTree from '../../core/api/get/getRepoFileTree.api';
 import FileTree from '../../components/fileTree/fileTree';
 
 const Repository = () => {
-    const { user, setUser } = useUser()
+    const { user, setUser } = useAppContext()
     const { username, repo } = useParams();
     const [repository, setRepository] = useState<any>({});
     const [loading, setLoading] = useState<boolean>(true)
