@@ -15,6 +15,7 @@ const FileTree: React.FC<FileTreeProps> = ({ fileTree, repo, username }) => {
         <div className='grid grid-cols-1 mt-3 gap-4'>
             {fileTree.map((item, index) => (
                 <Link
+                    className='cursor-pointer'
                     to={`/${username}/${repo}/content?path=${item.path}&type=${item.type}`}
                     key={index}
                 >
