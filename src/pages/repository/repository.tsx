@@ -71,7 +71,7 @@ const Repository = () => {
                 )}
             </div>
             {loading ?
-                <Loading /> : <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
+                <Loading /> : <div className='ml-10 border border-gray-300 p-5 rounded-lg w-[200rem]'>
                     <div className='flex justify-between'>
                         <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
                         <button

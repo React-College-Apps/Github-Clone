@@ -55,7 +55,7 @@ const Repositories = () => {
   console.log(currentRepos)
   return (
     <Layout>
-      <div className='ml-10 border border-gray-300 p-5 rounded w-[60rem] shadow-lg'>
+      <div className='ml-10 border border-gray-300 p-5 rounded-lg w-[60rem] shadow-lg'>
         <h2 className='text-xl font-semibold'>📚 Search Result of : {myParam}</h2>
         <div className='mt-3 flex items-end'>
           <div>

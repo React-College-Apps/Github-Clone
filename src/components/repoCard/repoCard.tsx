@@ -32,7 +32,7 @@ const getLanguageColor = (language: string) => {
   };
 const RepoCard: React.FC<RepoCardProps> = ({ repo }) => {
     return (
-        <div className='border border-gray-300 p-3 mt-4 focus:outline-none focus:shadow-lg rounded-md'>
+        <div className='border border-gray-300 p-3 mt-4 focus:outline-none focus:shadow-lg rounded-lg'>
             <Link to={`/${repo.owner.login}/${repo.name}`} className='text-xl font-bold'>{repo.name}</Link>
             <p className='text-gray-600 mt-1'>{repo.owner.login}</p>
             <div className='text-lg mt-1'>

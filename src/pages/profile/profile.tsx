@@ -54,7 +54,7 @@ const Profile = () => {
             </div>
 
 
-            <div className='ml-10 border border-gray-300 p-5 rounded'>
+            <div className='ml-10 border border-gray-300 p-5 rounded-lg'>
                 <h2 className='text-xl font-semibold'>📚 Repositories</h2>
                 <div className='grid grid-cols-2 mt-3 gap-4'>
                     {currentRepos && currentRepos.length > 0 ? (
