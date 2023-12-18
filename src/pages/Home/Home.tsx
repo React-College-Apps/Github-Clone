@@ -1,32 +1,42 @@
 import { useState } from 'react';
+import { useAppContext } from '../../context/App.context';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 
 import githubImage from '../../assets/images/githubl.png';
 import Layout from '../../components/header/layout/layout';
 import Input from '../../components/common/input';
 import getUserProfileAPi from '../../core/api/get/getUserProfile.api';
-import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../../context/App.context';
 
+import searchValidation from '../../core/validations/searchForm.validation'
 
 const Home = () => {
     const [username, setUsername] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>("")
+
     const { setUser } = useAppContext()
     const navigate = useNavigate()
 
-    const getUserData = async () => {
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(searchValidation)
+    });
+
+    const getUserData = async (data:any) => {
         setLoading(true);
         try {
-            const res:any = await getUserProfileAPi(username);
+            const res = await getUserProfileAPi(data.searchQuery);
+            console.log(res)
             setUser(res);
             if (res.status === 404) {
                 setError('User Not Found');
                 return;
             }
-            navigate(`/profile/${username.toLowerCase()}`);
-
+            navigate(`/profile/${data.username.toLowerCase()}`);
         } catch (error) {
             console.error("Error fetching user data:", error);
             setError('User Not Found');
@@ -34,6 +44,7 @@ const Home = () => {
             setLoading(false);
         }
     };
+
 
 
 
@@ -49,16 +60,17 @@ const Home = () => {
                         label={'Enter a Username To Search 🔎'}
                         type={'search'}
                         placeHolder={'search a user, like DesertFoox'}
-                        onChange={(e) => setUsername(e.target.value)}
+                        register={register("searchQuery")}
                     />
-                    {error !== "" && <span className='text-red-500 text-md block mt-2'>{error}</span>}
+                    {errors.searchQuery && <span className='text-red-500 text-md block mt-2'>{errors.searchQuery.message}</span>}
                     <button
                         className='px-2 py-2 bg-[#1F2937] text-white rounded-md mt-3'
                         disabled={loading}
-                        onClick={getUserData}
+                        onClick={handleSubmit(getUserData)}
                     >
                         {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
                     </button>
+
                 </div>
             </div>
         </Layout>
