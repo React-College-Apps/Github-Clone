@@ -12,7 +12,7 @@ interface SearchFormProps {
 const SearchForm: React.FC<SearchFormProps> = ({ register, errors, loading, onSubmit }) => (
     <form>
         <Input
-            labelClassName='text-xl'
+            labelClassName='text-xl mt-3'
             label={'Enter a Repository To Search 🔎'}
             type={'search'}
             placeHolder={'search a user, like Quera'}
