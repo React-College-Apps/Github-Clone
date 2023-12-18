@@ -35,9 +35,14 @@ const Repositories = () => {
   };
 
   useEffect(() => {
-    searchRepoHandler();
-  }, [myParam]);
-
+    if (!repositories.length || myParam !== searchedQuery) {
+      searchRepoHandler();
+    } else {
+      setTotalPages(Math.ceil(repositories.length / ITEMS_PER_PAGE));
+      setLoading(false);
+    }
+  }, [myParam, repositories]);
+  
   const changePage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
@@ -47,7 +52,7 @@ const Repositories = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-
+  console.log(currentRepos)
   return (
     <Layout>
       <div className='ml-10 border border-gray-300 p-5 rounded w-[60rem] shadow-lg'>
@@ -69,7 +74,7 @@ const Repositories = () => {
         </div>
         <div className='grid grid-cols-1'>
           {loading ? <Loading /> : <> <div className='grid grid-cols-1'>
-            {currentRepos.map((repo: any,key:number) => (
+            {currentRepos.map((repo: any, key: number) => (
               <RepoCard key={key} repo={repo} />
             ))}
           </div>

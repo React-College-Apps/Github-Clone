@@ -55,7 +55,7 @@ const FindRepo = () => {
                     />
                     {errors.searchQuery && <span className='text-red-500 text-md block mt-2'>{errors.searchQuery.message}</span>}
                     <button
-                        className='px-2 py-2 bg-[#1F2937] text-white rounded-md mt-3'
+                        className={`px-2 py-2 bg-[#1F2937] text-white rounded-md mt-3 ${loading ? ' bg-gray-400 text-gray-700' : 'bg-[#1F2937]'}`}
                         disabled={loading}
                         onClick={handleSubmit(getReposData)}
                     >

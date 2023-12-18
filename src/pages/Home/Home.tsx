@@ -16,23 +16,26 @@ import searchValidation from '../../core/validations/searchForm.validation'
 import useToast from '../../customHooks/useToast';
 
 const Home = () => {
-    const [username, setUsername] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false);
+    const [lastSearchedQuery, setLastSearchedQuery] = useState<string>("");
 
-    const { setUser } = useAppContext()
+    const { setUser } = useAppContext();
     const { showError } = useToast();
-
-    const navigate = useNavigate()
-
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const navigate = useNavigate();
+    const { register, handleSubmit, formState: { errors }, getValues } = useForm({
         resolver: yupResolver(searchValidation)
     });
 
     const getUserData = async (data: any) => {
+        setLastSearchedQuery(data.searchQuery); // Update the last searched query
+        if (data.searchQuery === lastSearchedQuery) {
+            return; // Early return if the current query is the same as the last
+        }
+
         setLoading(true);
         try {
             const res = await getUserProfileAPi(data.searchQuery);
-            console.log(res)
+            console.log(res);
             setUser(res);
             if (res.status === 404) {
                 showError('user with this username does not exist');
@@ -46,6 +49,7 @@ const Home = () => {
         }
     };
 
+    const isDisabled = () => loading || getValues("searchQuery") === lastSearchedQuery;
 
 
 
@@ -65,8 +69,8 @@ const Home = () => {
                     />
                     {errors.searchQuery && <span className='text-red-500 text-md block mt-2'>{errors.searchQuery.message}</span>}
                     <button
-                        className='px-2 py-2 bg-[#1F2937] text-white rounded-md mt-3'
-                        disabled={loading}
+                        className={`px-2 py-2 rounded-md mt-3 ${isDisabled() ? 'bg-gray-400 text-gray-700' : 'bg-[#1F2937] text-white'}`}
+                        disabled={isDisabled()}
                         onClick={handleSubmit(getUserData)}
                     >
                         {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
