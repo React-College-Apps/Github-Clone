@@ -8,6 +8,8 @@ import UserCart from '../../components/profile/userCart/userCart';
 import FileViewer from '../../components/fileViewer/fileViewer';
 import getRepoFileTree from '../../core/api/get/getRepoFileTree.api';
 import FileTree from '../../components/fileTree/fileTree';
+import RepositoryContent from '../../components/fileContent/repositoryContent/repositoryContent';
+import UserProfileCard from '../../components/fileContent/userProfileCard/userProfileCard';
 
 const FileContent = () => {
     const { user } = useAppContext();
@@ -58,39 +60,17 @@ const FileContent = () => {
 
     return (
         <Layout>
-            <div className='flex flex-col align-self-start'>
-                {user.userProfile && (
-                    <UserCart
-                        avatar={user.userProfile.avatar_url}
-                        name={user.userProfile.name}
-                        login={user.userProfile.login}
-                        bio={user.userProfile.bio}
-                        followers={user.userProfile.followers}
-                        following={user.userProfile.following}
-                        location={user.userProfile.location}
-                        blog={user.userProfile.blog}
-                    />
-                )}
-            </div>
+            {user.userProfile && <UserProfileCard user={user.userProfile} />}
 
-
-            <div className='ml-10 border border-gray-300 p-5 rounded'>
-                <h2 className='text-xl font-semibold'>📚 Repository</h2>
-                <div className='w-[40rem] mt-10'>
-                    {imageUrl ? (
-                        <div className="flex justify-center">
-                            <img className="max-w-full h-auto" src={imageUrl} alt="Image Content" />
-                        </div>
-
-
-                    ) : (type === "blob" || type === "file") ? (
-                        <FileViewer fileContent={content} language={fileLanguage} />
-                    ) : (
-                        <FileTree fileTree={fileTree} repo={repo!} username={username!} />
-                    )}
-                </div>
-
-            </div>
+            <RepositoryContent
+                type={type}
+                imageUrl={imageUrl}
+                content={content}
+                fileLanguage={fileLanguage}
+                fileTree={fileTree}
+                repo={repo}
+                username={username}
+            />
         </Layout>
     )
 }

@@ -9,7 +9,7 @@ const searchRepos = async (query:string) => {
         const response = await octokit.request('GET /search/repositories', {
             q: query
         });
-        return response.data.items; // Array of repositories matching the query
+        return response.data.items; 
     } catch (error) {
         console.error("Error searching repositories:", error);
         return [];
