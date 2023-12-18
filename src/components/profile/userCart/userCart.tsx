@@ -15,8 +15,8 @@ const UserCart: React.FC<IUserCartProps> = ({ avatar, bio, blog, followers, foll
     return (
         <div className='border border-[#ccc] p-5 rounded w-[20rem] shadow-lg'> {/* Removed any fixed height settings */}
             <div>
-                <img className='rounded h-auto w-full' src={avatar} alt={name}/> {/* Responsive image */}
-                <Link to={`/profile/${login}`} className='text-xl mt-2'>{name}</Link>
+                <img className='rounded h-auto w-full mb-2' src={avatar} alt={name}/> {/* Responsive image */}
+                <Link to={`/profile/${login}`} className='text-xl mt-3'>{name}</Link>
                 <p className='mt-1'>@{login}</p>
                 <p className='mt-1'>{bio}</p>
             </div>
