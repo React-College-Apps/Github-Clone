@@ -7,6 +7,7 @@ import UserCart from '../../components/profile/userCart/userCart';
 import getUserProfileApi from '../../core/api/get/getUserProfile.api';
 import getRepoFileTree from '../../core/api/get/getRepoFileTree.api';
 import FileTree from '../../components/fileTree/fileTree';
+import Loading from '../../components/loading/loading';
 
 const Repository = () => {
     const { user, setUser } = useAppContext()
@@ -70,9 +71,7 @@ const Repository = () => {
                 )}
             </div>
             {loading ?
-                <div className="flex justify-center items-center">
-                    <div className="loader"></div>
-                </div> : <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
+                <Loading /> : <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
                     <div className='flex justify-between'>
                         <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
                         <button
