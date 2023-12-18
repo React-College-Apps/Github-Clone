@@ -38,7 +38,7 @@ const Home = () => {
                 showError('user with this username does not exist');
                 return;
             }
-            navigate(`/profile/${data.username.toLowerCase()}`);
+            navigate(`/profile/${res.userProfile.login.toLowerCase()}`);
         } catch (error) {
             console.error("Error fetching user data:", error);
         } finally {
