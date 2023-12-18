@@ -59,7 +59,7 @@ const Home = () => {
                 <div>
                     <img className='w-[300px] rounded-md' src={githubImage} alt="Github" />
                 </div>
-                <div className='mt-4'>
+                <form className='mt-4'>
                     <Input
                         labelClassName='text-xl'
                         label={'Enter a Username To Search 🔎'}
@@ -76,7 +76,7 @@ const Home = () => {
                         {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
                     </button>
 
-                </div>
+                </form>
             </div>
         </Layout>
     );

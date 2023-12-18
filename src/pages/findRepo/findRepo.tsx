@@ -45,7 +45,7 @@ const FindRepo = () => {
                 <div>
                     <img className='w-[300px] rounded-md' src={githubImage} alt="Github" />
                 </div>
-                <div className='mt-4'>
+                <form className='mt-4'>
                     <Input
                         labelClassName='text-xl'
                         label={'Enter a Repository To Search 🔎'}
@@ -62,7 +62,7 @@ const FindRepo = () => {
                         {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
                     </button>
 
-                </div>
+                </form>
             </div>
         </Layout>
     )
