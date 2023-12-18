@@ -69,8 +69,8 @@ const Repositories = () => {
         </div>
         <div className='grid grid-cols-1'>
           {loading ? <Loading /> : <> <div className='grid grid-cols-1'>
-            {currentRepos.map((repo: any) => (
-              <RepoCard repo={repo} />
+            {currentRepos.map((repo: any,key:number) => (
+              <RepoCard key={key} repo={repo} />
             ))}
           </div>
             <Pagination
