@@ -13,9 +13,9 @@ interface IUserCartProps {
 }
 const UserCart: React.FC<IUserCartProps> = ({ avatar, bio, blog, followers, following, location, login, name }) => {
     return (
-        <div className='border border-[#ccc] p-5 rounded-lg w-[20rem] shadow-lg'> {/* Removed any fixed height settings */}
+        <div className='border border-[#ccc] p-5 rounded-lg w-[20rem] shadow-lg'> 
             <div>
-                <img className='rounded-lg h-auto w-full mb-2' src={avatar} alt={name} /> {/* Responsive image */}
+                <img className='rounded-lg h-auto w-full mb-2' src={avatar} alt={name} /> 
                 <Link to={`/profile/${login}`} className='text-xl mt-3'>{name}</Link>
                 <p className='mt-1'>@{login}</p>
                 <p className='mt-1'>{bio}</p>

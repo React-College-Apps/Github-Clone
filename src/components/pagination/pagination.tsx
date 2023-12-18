@@ -8,7 +8,7 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, changePage }) => {
     return (
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-3 mb-3">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
                 <button
                     key={number}
