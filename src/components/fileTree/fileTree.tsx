@@ -1,16 +1,10 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 
-interface FileTreeProps {
-    fileTree: Array<{
-        path: string;
-        type: string;
-    }>;
-    repo: string;
-    username: string
-}
+import IFileTreeProps from '../../core/interfaces/props/IfileTree.prop.ts'
 
-const FileTree: React.FC<FileTreeProps> = ({ fileTree, repo, username }) => {
+const FileTree: React.FC<IFileTreeProps> = ({ fileTree, repo, username }) => {
     return (
         <div className='grid grid-cols-1 mt-3 gap-4'>
             {fileTree.map((item, index) => (

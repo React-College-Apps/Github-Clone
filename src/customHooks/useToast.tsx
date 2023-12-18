@@ -1,6 +1,5 @@
 import { toast, TypeOptions } from 'react-toastify';
 
-// This setup allows for customization of the toast's appearance and behavior.
 const defaultOptions = {
     position: toast.POSITION.TOP_RIGHT,
     autoClose: 5000,

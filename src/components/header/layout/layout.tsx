@@ -1,12 +1,12 @@
 import React from 'react';
+
 import Header from '../header';
 
-interface LayoutProps {
-    children: React.ReactNode;
-    noLayoutContent?: boolean;
-}
+import ILayoutProps from '../../../core/interfaces/props/ilayout.prop';
 
-const Layout: React.FC<LayoutProps> = ({ children, noLayoutContent }) => {
+
+
+const Layout: React.FC<ILayoutProps> = ({ children, noLayoutContent }) => {
     return (
         <>
             <Header />

@@ -1,20 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IRepoCardProps } from '../../core/interfaces/props/Irepo.prop';
 
 // Define a type or interface for the repo prop
-interface Repo {
-    name: string;
-    owner: {
-        login: string;
-    };
-    stargazers_count: number;
-    topics: string[];
-    language?: string; // language might be optional
-}
-
-interface RepoCardProps {
-    repo: Repo;
-}
 
 const getLanguageColor = (language: string) => {
     switch (language) {
@@ -30,7 +18,7 @@ const getLanguageColor = (language: string) => {
         return 'bg-gray-400';
     }
   };
-const RepoCard: React.FC<RepoCardProps> = ({ repo }) => {
+const RepoCard: React.FC<IRepoCardProps> = ({ repo }) => {
     return (
         <div className='border border-gray-300 p-3 mt-4 focus:outline-none focus:shadow-lg rounded-lg'>
             <Link to={`/${repo.owner.login}/${repo.name}`} className='text-xl font-bold'>{repo.name}</Link>

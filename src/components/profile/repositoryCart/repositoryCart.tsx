@@ -1,13 +1,10 @@
 import React from 'react'
+
 import { Link } from 'react-router-dom'
 
-interface IRepositoryCart {
-    key: number,
-    name: string,
-    full_name: string,
-    language: string,
-    to:string
-}
+import IRepositoryCart from '../../../core/interfaces/props/IrepositoryCart.prop'
+
+
 const RepositoryCart: React.FC<IRepositoryCart> = ({ key, name, full_name, language, to }) => {
     return (
         <div key={key} className='border border-gray-300 hover:border-gray-400 rounded p-2 hover:shadow-lg transition-all w-[22rem]'> {/* Fixed width */}

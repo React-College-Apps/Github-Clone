@@ -1,15 +1,8 @@
 import React from 'react';
 
-interface IInputProps {
-    label: string,
-    type: string,
-    className?: string,
-    labelClassName?: string,
-    value?: string,
-    placeHolder: string,
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    register?: any,  // Add this line
-}
+import IInputProps from '../../core/interfaces/props/Iinput.prop';
+
+
 
 const Input: React.FC<IInputProps> = ({ label, type, className, placeHolder, onChange, labelClassName, value, register }) => {
     return (

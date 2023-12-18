@@ -1,16 +1,10 @@
 import React from 'react'
+
 import { Link } from 'react-router-dom'
 
-interface IUserCartProps {
-    avatar: string,
-    name: string,
-    login: string,
-    bio: string,
-    followers: number,
-    following: number
-    location: string,
-    blog: string
-}
+import IUserCartProps from '../../../core/interfaces/props/IuserCart.prop'
+
+
 const UserCart: React.FC<IUserCartProps> = ({ avatar, bio, blog, followers, following, location, login, name }) => {
     return (
         <div className='border border-[#ccc] p-5 rounded-lg w-[20rem] shadow-lg'> 
