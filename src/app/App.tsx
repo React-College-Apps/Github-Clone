@@ -1,5 +1,7 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import '../assets/styles/App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { AppContextProvider } from '../context/App.context';
 
@@ -39,6 +41,8 @@ export default function App() {
   return (
     <AppContextProvider>
       <RouterProvider router={router} />
+      <ToastContainer />
+
     </AppContextProvider>
   );
 }
