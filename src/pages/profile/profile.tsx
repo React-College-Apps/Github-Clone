@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import Layout from '../../components/header/layout/layout'
 import { useAppContext } from '../../context/App.context'
 import { useParams } from 'react-router-dom'
-import getUserProfileApi from '../../core/api/get/getUserProfile.api'
+
+import Layout from '../../components/header/layout/layout'
+
 import UserCart from '../../components/profile/userCart/userCart'
-import RepositoryCart from '../../components/profile/repositoryCart/repositoryCart'
-import Pagination from '../../components/pagination/pagination'
+import RepositoriesData from '../../components/profile/repositories/repositories'
+
+import getUserProfileApi from '../../core/api/get/getUserProfile.api'
 
 const Profile = () => {
     const { user, setUser } = useAppContext();
@@ -54,23 +56,8 @@ const Profile = () => {
             </div>
 
 
-            <div className='ml-10 border border-gray-300 px-3 rounded-lg flex flex-col justify-between'>
-                <h2 className='text-xl font-semibold mt-3'>📚 Repositories</h2>
-                <div className='grid grid-cols-2 gap-4 align-items-start mt-3'> {/* Updated this line */}
-                    {currentRepos && currentRepos.length > 0 ? (
-                        currentRepos.map((repo: any, key: any) => (
-                            <RepositoryCart key={key} name={repo.name} full_name={repo.full_name} language={repo.language} to={`/${repo.owner.login}/${repo.name}`} />
-                        ))
-                    ) : (
-                        <p>No repositories found.</p>
-                    )}
-                </div>
-                <Pagination
-                    totalPages={totalPages}
-                    currentPage={currentPage}
-                    changePage={changePage}
-                />
-            </div>
+            <RepositoriesData currentRepos={currentRepos} totalPages={totalPages} currentPage={currentPage} changePage={changePage} />
+
 
 
         </Layout >
