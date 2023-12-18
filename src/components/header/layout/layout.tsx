@@ -10,7 +10,7 @@ const Layout: React.FC<LayoutProps> = ({ children, noLayoutContent }) => {
     return (
         <>
             <Header />
-            {noLayoutContent ? children : <div className='flex justify-center mt-[6rem] container mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-3'>
+            {noLayoutContent ? children : <div className='flex justify-center mt-24  mx-auto max-w-7xl  py-3'>
                 {children}
             </div>}
 
