@@ -69,10 +69,10 @@ const Repository = () => {
                     />
                 )}
             </div>
-            <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
-                {loading ? <div className="flex justify-center items-center">
+            {loading ?
+                <div className="flex justify-center items-center">
                     <div className="loader"></div>
-                </div> : <>
+                </div> : <div className='ml-10 border border-gray-300 p-5 rounded w-[200rem]'>
                     <div className='flex justify-between'>
                         <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
                         <button
@@ -83,9 +83,9 @@ const Repository = () => {
                         </button>
                     </div>
                     <FileTree fileTree={fileTree} repo={repo!} username={username!} />
-                </>}
+                </div>
+            }
 
-            </div>
 
         </Layout>
     );
