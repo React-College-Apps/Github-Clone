@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
+import { useAppContext } from '../../context/App.context';
+
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import Layout from '../../components/header/layout/layout'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import searchRepos from '../../core/api/get/searchRepos';
 import Input from '../../components/common/input';
-import { useAppContext } from '../../context/App.context';
 import Pagination from '../../components/pagination/pagination';
 import RepoCard from '../../components/repoCard/repoCard';
 import Loading from '../../components/loading/loading';
+
 const Repositories = () => {
   const { repositories, setRepositories } = useAppContext()
 
@@ -42,7 +45,7 @@ const Repositories = () => {
       setLoading(false);
     }
   }, [myParam, repositories]);
-  
+
   const changePage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };

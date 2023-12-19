@@ -8,6 +8,7 @@ import getUserProfileApi from '../../core/api/get/getUserProfile.api';
 import getRepoFileTree from '../../core/api/get/getRepoFileTree.api';
 import FileTree from '../../components/fileTree/fileTree';
 import Loading from '../../components/loading/loading';
+import Readme from '../../components/repository/readme/readme';
 
 const Repository = () => {
     const { user, setUser } = useAppContext()
@@ -16,6 +17,19 @@ const Repository = () => {
     const [loading, setLoading] = useState<boolean>(true)
     const [fileTree, setFileTree] = useState<any>([]);
     const [buttonText, setButtonText] = useState("Clone with HTTP🔽");
+    const [readmeData, setReadmeData] = useState("")
+    const fetchReadmeContent = async () => {
+        if (!username || !repo) return '';
+        const readmeUrl = `https://api.github.com/repos/${username}/${repo}/readme`;
+        try {
+            const response = await fetch(readmeUrl);
+            const data = await response.json();
+            setReadmeData(atob(data.content)) // Decode base64 content
+        } catch (err) {
+            console.error('Failed to fetch README:', err);
+            return '';
+        }
+    };
 
     const fetchRepoDetails = async () => {
         setUser({})
@@ -48,9 +62,13 @@ const Repository = () => {
             console.error('Failed to copy:', err);
         }
     };
+
+
+
     useEffect(() => {
         if (username && repo) {
             fetchRepoDetails();
+            fetchReadmeContent()
         }
     }, [username, repo]);
 
@@ -71,20 +89,23 @@ const Repository = () => {
                 )}
             </div>
             {loading ?
-                <Loading /> : <div className='ml-10 border border-gray-300 p-5 rounded-lg w-[200rem]'>
-                    <div className='flex justify-between'>
-                        <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
-                        <button
-                            className='bg-[#1F2937] text-white py-2 px-3 text-center rounded'
-                            onClick={copyCloneUrlToClipboard}
-                        >
-                            {buttonText}
-                        </button>
+                <Loading /> : <div className='grid grid-cols-1'>
+                    <div className='ml-10 border border-gray-300 p-5 rounded-lg w-[60rem]'>
+                        <div className='flex justify-between'>
+                            <h2 className='text-xl font-semibold'>📚 {repository.name}</h2>
+                            <button
+                                className='bg-[#1F2937] text-white py-2 px-3 text-center rounded'
+                                onClick={copyCloneUrlToClipboard}
+                            >
+                                {buttonText}
+                            </button>
+                        </div>
+                        <FileTree fileTree={fileTree} repo={repo!} username={username!} />
                     </div>
-                    <FileTree fileTree={fileTree} repo={repo!} username={username!} />
+                    <Readme readme={readmeData} />
+
                 </div>
             }
-
 
         </Layout>
     );
