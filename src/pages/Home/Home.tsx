@@ -48,7 +48,7 @@ const Home: React.FC = () => {
     return (
         <Layout noLayoutContent={true}>
             <div className='flex flex-col justify-center items-center h-screen'>
-                <img className='w-[300px] rounded-md' src={githubImage} alt="Github" />
+                <img className='w-[337px] rounded-md' src={githubImage} alt="Github" />
                 <UserSearchForm isDisabled={isDisabled} register={register} errors={errors} loading={loading} onSubmit={handleSubmit(onSubmit)} />
             </div>
         </Layout>
