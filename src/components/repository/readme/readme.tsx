@@ -10,7 +10,6 @@ interface IReadMe {
 const Readme: React.FC<IReadMe> = ({ readme }) => {
     const markdown = marked.parse(readme);
 
-    // Sanitize the HTML
     const sanitizedHTML = DOMPurify.sanitize(markdown);
 
     return (
