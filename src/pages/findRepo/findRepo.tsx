@@ -12,7 +12,7 @@ const FindRepo: React.FC = () => {
     return (
         <Layout noLayoutContent={true}>
             <div className='flex flex-col justify-center items-center h-screen '>
-                <img className='w-[300px] rounded-lg' src={githubImage} alt="Github" />
+                <img className='w-[370px] rounded-lg' src={githubImage} alt="Github" />
                 <SearchForm register={register} errors={errors} loading={loading} onSubmit={handleSubmit} />
             </div>
         </Layout>

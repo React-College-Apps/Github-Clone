@@ -10,7 +10,7 @@ interface SearchFormProps {
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ register, errors, loading, onSubmit }) => (
-    <form>
+    <form className='flex mt-3'>
         <Input
             labelClassName='text-xl mt-3'
             label={'Enter a Repository To Search 🔎'}
@@ -19,13 +19,15 @@ const SearchForm: React.FC<SearchFormProps> = ({ register, errors, loading, onSu
             register={register("searchQuery")}
         />
         {errors.searchQuery && <span className='text-red-500 text-md block mt-2'>{errors.searchQuery.message}</span>}
-        <button
-            className={`px-2 py-2 bg-[#1F2937] text-white rounded-md mt-3 ${loading ? ' bg-gray-400 text-gray-700' : 'bg-[#1F2937]'}`}
-            disabled={loading}
-            onClick={onSubmit}
-        >
-            {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
-        </button>
+        <div className='flex flex-col h-full justify-end'>
+            <button
+                className={`px-2 py-3 ml-2 bg-[#1F2937] text-white rounded-md mt-3 ${loading ? ' bg-gray-400 text-gray-700' : 'bg-[#1F2937]'}`}
+                disabled={loading}
+                onClick={onSubmit}
+            >
+                {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
+            </button>
+        </div>
     </form>
 );
 

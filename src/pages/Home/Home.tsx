@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../../context/App.context';
 import Layout from '../../components/header/layout/layout';
-import githubImage from '../../assets/images/githubl.png';
 import UserSearchForm from '../../components/home/userSearchForm/userSearchForm';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -47,10 +46,11 @@ const Home: React.FC = () => {
     const isDisabled = () => loading
     return (
         <Layout noLayoutContent={true}>
-            <div className='flex flex-col justify-center items-center h-screen'>
-                <img className='w-[337px] rounded-md' src={githubImage} alt="Github" />
+            {/* <div classNameName='flex flex-col justify-center items-center h-screen'>
+                <img classNameName='w-[337px] rounded-md' src={githubImage} alt="Github" />
                 <UserSearchForm isDisabled={isDisabled} register={register} errors={errors} loading={loading} onSubmit={handleSubmit(onSubmit)} />
-            </div>
+            </div> */}
+            <UserSearchForm isDisabled={isDisabled} register={register} errors={errors} loading={loading} onSubmit={handleSubmit(onSubmit)} />
         </Layout>
     );
 };

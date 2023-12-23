@@ -1,5 +1,5 @@
 interface IInputProps {
-    label: string,
+    label?: string,
     type: string,
     className?: string,
     labelClassName?: string,
