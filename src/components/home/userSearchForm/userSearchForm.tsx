@@ -6,30 +6,31 @@ interface UserSearchFormProps {
     register: UseFormRegister<FieldValues>;
     errors: any;
     loading: boolean;
-    isDisabled: () => boolean;
+    isDisabled?: () => boolean;
     onSubmit: () => void;
+    inputOnchange?: (e: any) => void;
 }
 
-const UserSearchForm: React.FC<UserSearchFormProps> = ({ register, errors, isDisabled, onSubmit, loading }) => (
-    <form className='flex'>
+const UserSearchForm: React.FC<UserSearchFormProps> = ({ register, errors, isDisabled, onSubmit, loading, inputOnchange }) => (
+    <form className='flex mt-3'>
         <Input
             labelClassName='text-xl'
             label={'Enter a Username To Search 🔎'}
             type={'search'}
+            onChange={inputOnchange}
             placeHolder={'search a user, like DesertFoox'}
             register={register("searchQuery")}
         />
         {errors.searchQuery && <span className='text-red-500 text-md block mt-2'>{errors.searchQuery.message}</span>}
         <div className='flex flex-col h-full justify-end'>
             <button
-                className={`px-2 py-3 ml-3 rounded-md  ${isDisabled() ? 'bg-gray-400 text-gray-700' : 'bg-[#1F2937] text-white'}`}
-                disabled={isDisabled()}
+                className={`px-2 py-3 ml-3 rounded-md  ${isDisabled && isDisabled() ? 'bg-gray-400 text-gray-700' : 'bg-[#1F2937] text-white'}`}
+                disabled={isDisabled && isDisabled()}
                 onClick={onSubmit}
             >
                 {loading ? <span className='animate-ping'>🔍</span> : '➡️'}
             </button>
         </div>
-
     </form>
 );
 
