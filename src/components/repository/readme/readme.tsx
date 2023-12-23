@@ -1,6 +1,6 @@
 // Readme.tsx
 import React from 'react';
-import {marked } from 'marked';
+import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 
 interface IReadMe {
@@ -12,10 +12,14 @@ const Readme: React.FC<IReadMe> = ({ readme }) => {
 
     const sanitizedHTML = DOMPurify.sanitize(markdown);
 
-    return (
+    return (<>
+
         <div className='ml-10 mt-7 border border-gray-300 p-5 rounded-lg w-[60rem]'
-             dangerouslySetInnerHTML={{ __html: sanitizedHTML }}>
+        >
+            <h2 className='text-3xl mb-2'>README.md</h2>
+            <div dangerouslySetInnerHTML={{ __html: sanitizedHTML }}></div>
         </div>
+    </>
     );
 };
 
