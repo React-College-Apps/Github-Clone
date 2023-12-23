@@ -12,24 +12,6 @@ interface SearchFormProps {
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ register, errors, loading, onSubmit, }) => (
-    // <form className='mt-3 flex flex-col space-y-2' onSubmit={onSubmit}>
-    //     <label htmlFor="searchQuery" className='text-xl'>
-    //         Enter a Repository To Search 🔎
-    //     </label>
-    //     <input
-    //         className="flex w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-    //         placeholder="search a user, like Quera"
-    //         type="search"
-    //         {...register("searchQuery")}
-    //     />
-    //     {errors.searchQuery && <span className='text-red-500 text-md block'>{errors.searchQuery.message}</span>}
-    //     <button
-    //         className={`inline-flex w-full bg-[#1F2937] text-white items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 ${loading ? ' disabled' : ''}`}
-    //         disabled={loading}
-    //     >
-    //         {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
-    //     </button>
-    // </form>
     <main className="min-h-screen bg-gray-100 py-12 flex flex-col justify-center sm:py-20 space-y-8">
         <div
             className="border text-card-foreground max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden"

@@ -61,7 +61,7 @@ const Repositories = () => {
       <div className='ml-10 border border-gray-300 p-5 rounded-lg w-[60rem] shadow-lg'>
         <h2 className='text-xl font-semibold'>📚 Search Result of : {myParam}</h2>
         <div className='mt-3 flex items-end'>
-          <div>
+          <div className="flex w-full">
             <Input
               label={'Search for Repo '}
               type={'search '}
@@ -70,10 +70,11 @@ const Repositories = () => {
               value={searchedQuery}
               onChange={(e) => setSearchedQuery(e.target.value)}
             />
+            <button onClick={searchRepoHandler} className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#181818] text-white  h-10 px-4 py-2 ml-2">
+              {loading ? <span className='animate-ping'>🔍</span> : 'Search'}
+            </button>
           </div>
-          <div>
-            <button onClick={searchRepoHandler} className='bg-[#1F2937] text-white rounded py-3 px-3 ml-3'>  {loading ? <span className='animate-ping'>🔍</span> : 'Search'} </button>
-          </div>
+        
         </div>
         <div className='grid grid-cols-1'>
           {loading ? <Loading /> : <> <div className='grid grid-cols-1'>

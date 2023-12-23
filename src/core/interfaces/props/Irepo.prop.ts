@@ -3,6 +3,8 @@ export interface IRepo {
   owner: {
     login: string;
   };
+  description:string
+  forks:any
   stargazers_count: number;
   topics: string[];
   language?: string; 
