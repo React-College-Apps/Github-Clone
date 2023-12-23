@@ -7,7 +7,7 @@ import IPaginationProps from '../../core/interfaces/props/Ipagination.prop';
 const Pagination: React.FC<IPaginationProps> = ({ totalPages, currentPage, changePage }) => {
     return (
         <>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-4 mb-4">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
                     <button
                         onClick={() => changePage(number)}
