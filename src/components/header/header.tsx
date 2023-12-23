@@ -7,7 +7,7 @@ const Header = () => {
     const isActive = (pathname: string) => location.pathname === pathname;
 
     return (
-        <nav className="bg-gray-800">
+        <nav className="bg-[#181818]">
             <div className="container mx-auto  ">
                 <div className="relative flex h-16 items-center justify-between">
 
@@ -26,7 +26,7 @@ const Header = () => {
 
                                 <Link
                                     to={"/"}
-                                    className={`px-3 py-2 rounded-md text-sm font-medium ${isActive('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                    className={`px-3 py-2 rounded-md text-sm font-medium ${isActive('/') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                                         }`}
                                     aria-current={isActive('/') ? 'page' : undefined}
                                 >

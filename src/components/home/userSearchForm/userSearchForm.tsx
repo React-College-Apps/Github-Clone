@@ -23,7 +23,7 @@ const UserSearchForm: React.FC<UserSearchFormProps> = ({ register, errors, isDis
             </div>
             <form className="px-6 py-4" onSubmit={onSubmit}>
                 <div className="flex space-x-2">
-                    <Input type={'search'} placeHolder={'GitHub username'} register={register} />
+                    <Input type={'search'} placeHolder={'GitHub username'} register={register("searchQuery")} />
                     <button
                         className={`inline-flex bg-[#1F2937] text-white items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 ${isDisabled && isDisabled() ? 'disabled' : ''}`}
                         disabled={isDisabled && isDisabled()}
