@@ -46,10 +46,6 @@ const Home: React.FC = () => {
     const isDisabled = () => loading
     return (
         <Layout noLayoutContent={true}>
-            {/* <div classNameName='flex flex-col justify-center items-center h-screen'>
-                <img classNameName='w-[337px] rounded-md' src={githubImage} alt="Github" />
-                <UserSearchForm isDisabled={isDisabled} register={register} errors={errors} loading={loading} onSubmit={handleSubmit(onSubmit)} />
-            </div> */}
             <UserSearchForm isDisabled={isDisabled} register={register} errors={errors} loading={loading} onSubmit={handleSubmit(onSubmit)} />
         </Layout>
     );
