@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { IRepoCardProps } from '../../core/interfaces/props/Irepo.prop';
 import StarIcon from '../icons/starIcon';
-import GitForkIcon from '../icons/GitForkIcon';
+import GitForkIcon from '../icons/gitForkIcon';
 
 // Define a type or interface for the repo prop
 
@@ -31,9 +31,10 @@ const RepoCard: React.FC<IRepoCardProps> = ({ repo }) => {
         </Link>
         <p className="text-sm text-gray-500">{repo.description}</p>
         <div className="flex items-center gap-2">
-          <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-[#18181B] text-white ">
+          {repo.language && <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-[#18181B] text-white ">
             {repo.language}
-          </div>
+          </div>}
+
           <StarIcon />
           <span>{repo.stargazers_count}</span>
           <GitForkIcon />
